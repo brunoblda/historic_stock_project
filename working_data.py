@@ -34,7 +34,7 @@ def stocks_tables_date_dataframe(stocks_names, stocks_tables, inicio, dias):
 
                 periodo_for = data_periodo(inicio_for, inicio_for)
 
-                result_table_for = dataframe.loc[periodo_for[0]:periodo_for[1]]
+                result_table_for = dataframe.sort_index().loc[periodo_for[0]:periodo_for[1]]
 
                 result_table = result_table.append(result_table_for)
 

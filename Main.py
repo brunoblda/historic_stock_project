@@ -82,4 +82,4 @@ def database_settings(periodo):
 if __name__ == '__main__':
     # '7d' é o inicial
     # '1d' é o incremental
-    database_settings('7d')
+    database_settings('1d')
