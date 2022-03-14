@@ -252,6 +252,3 @@ if __name__ == '__main__':
 
 
     #create_tables_stocks_txt(stocks_dates, stocks)
-
-
-

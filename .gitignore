@@ -61,6 +61,10 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
+# Banco de dados de stocks:
+
+*.db
+
 # Flask stuff:
 instance/
 .webassets-cache
