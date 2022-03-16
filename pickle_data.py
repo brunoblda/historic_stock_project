@@ -33,34 +33,23 @@ def database_settings(periodo):
         sys.exit()
 
 
-    stocks = ['{}.SA'.format(stock) for stock in stocks]
+    stocks_SA = ['{}.SA'.format(stock) for stock in stocks]
 
     print(stocks)
 
     #ticker_list = [yf.Ticker(stock) for stock in stocks]
 
-    ticker_list = [yf.Ticker(stock) for stock in stocks]
+    ticker_list = [yf.Ticker(stock) for stock in stocks_SA]
 
     results_history = [ticker.history(period=periodo, interval='1m') for ticker in ticker_list]
     #results_history = [ticker.history(period='7d', interval='1m') for ticker in ticker_list]
 
     results_close_history = [result[['Close']] for result in results_history]
 
-    engine = create_engine(nome_arquivo, echo=True)
-    with engine.connect() as sqlite_connection:
-        n = 0
-        for result in results_close_history:
-            result.to_sql(stocks[n], sqlite_connection, if_exists='append')
-            n += 1
-
-    """
-        Salva no formato pickle comprimido em bz2
     n = 0
     for result in results_close_history:
-        #result.to_sql(stocks[n], sqlite_connection, if_exists='append')
         result.to_pickle('stocks_data/'+ stocks[n] + '.pkl', compression='bz2')
         n += 1
-    """
 
 #elet3 = yf.Ticker('ELET3.SA')
 
