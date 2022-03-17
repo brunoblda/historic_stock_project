@@ -14,17 +14,17 @@ def database_settings(periodo):
 
     if lista_stock_escolha == 0:
 
-        stocks = ['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4', 'LAME4', 'LAME3']
+        stocks = ['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4']
         nome_arquivo = 'sqlite:///stocks.db'
 
     elif lista_stock_escolha == 1:
 
-        stocks =['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4', 'LAME3', 'LAME4', 'ITSA3', 'ITSA4',
+        stocks =['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4', 'ITSA3', 'ITSA4',
                  'ITUB3', 'ITUB4', 'USIM3', 'USIM5', 'CMIG3', 'CMIG4']
         nome_arquivo = 'sqlite:///stocks_pn.db'
     elif lista_stock_escolha == 2:
 
-        stocks = ['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4', 'LAME3', 'LAME4', 'ITSA3', 'ITSA4', 'ITUB3',
+        stocks = ['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4', 'ITSA3', 'ITSA4', 'ITUB3',
                   'ITUB4', 'USIM3', 'USIM5', 'CMIG3', 'CMIG4', 'SANB11', 'BBAS3', 'BPAC11', 'BIDI3', 'BIDI4', 'BRSR6',
                   'BPAN4', 'ABCB4', 'GGBR4', 'CSNA3', 'VALE3']
         nome_arquivo = 'sqlite:///stocks_setores.db'

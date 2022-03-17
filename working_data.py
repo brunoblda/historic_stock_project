@@ -124,6 +124,7 @@ def get_last_day_price(stocks_names, stocks_tables):
 
     for stock_table in stocks_tables:
         dataframe = stock_table
+
         dataframe['date_time'] = pd.to_datetime(dataframe['Datetime'])
         dataframe = dataframe.set_index('date_time')
         dataframe.drop(['Datetime'], axis=1, inplace=True)
@@ -155,20 +156,20 @@ if __name__ == '__main__':
 
     if lista_stock_escolha == 0:
 
-        stocks = ['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4', 'LAME3', 'LAME4']
+        stocks = ['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4']
         nome_arquivo = 'sqlite:///stocks.db'
         data_minima = '2021-04-08'
 
     elif lista_stock_escolha == 1:
 
-        stocks =['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4', 'LAME3', 'LAME4', 'ITSA3', 'ITSA4',
+        stocks =['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4', 'ITSA3', 'ITSA4',
                  'ITUB3', 'ITUB4', 'USIM3', 'USIM5', 'CMIG3', 'CMIG4']
         nome_arquivo = 'sqlite:///stocks_pn.db'
         data_minima = '2021-05-03'
 
     elif lista_stock_escolha == 2:
 
-        stocks = ['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4', 'LAME3', 'LAME4', 'ITSA3', 'ITSA4', 'ITUB3',
+        stocks = ['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4','ITSA3', 'ITSA4', 'ITUB3',
                   'ITUB4', 'USIM3', 'USIM5', 'CMIG3', 'CMIG4', 'SANB11', 'BBAS3', 'BPAC11', 'BIDI3', 'BIDI4', 'BRSR6',
                   'BPAN4', 'ABCB4', 'GGBR4', 'CSNA3', 'VALE3']
 

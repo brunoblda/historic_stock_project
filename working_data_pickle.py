@@ -193,8 +193,6 @@ if __name__ == '__main__':
 
     stocks_tables = reading_file_pickle.reading_list(stocks)
 
-    print(stocks_tables[0].head())
-
     #create_tables_stocks_txt(stocks_tables, stocks)
 
     print()
