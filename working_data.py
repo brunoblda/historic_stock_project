@@ -51,6 +51,9 @@ def stocks_tables_date_dataframe(stocks_names, stocks_tables, inicio, dias):
         stocks_tables_date_name.append(stock_table_date_name)
         n += 1
 
+    print("Stocks table date name")
+    print(stocks_tables_date_name)
+
     return stocks_tables_date_name
 
 # with open('diff_table2.txt', 'w') as file:
@@ -110,7 +113,6 @@ def plot_visualization(table_diff, coluna):
 
 def get_last_day_price(stocks_names, stocks_tables):
 
-
     #def stocks_tables_date_dataframe(stocks_names, stocks_tables, inicio, dias):
 
     stocks_values = []
@@ -128,12 +130,13 @@ def get_last_day_price(stocks_names, stocks_tables):
         dataframe['date_time'] = pd.to_datetime(dataframe['Datetime'])
         dataframe = dataframe.set_index('date_time')
         dataframe.drop(['Datetime'], axis=1, inplace=True)
-
         dataframe = dataframe[datetime_today: datetime_today]
 
-        dataframe = dataframe[datetime_today:datetime_today]
-
+        print(dataframe)
+        
         result_value = dataframe['Close'].values
+
+        print(result_value)
 
         result_value = np.array2string(result_value,
                                        formatter={'float_kind':lambda result_value: "%.2f" % result_value})
@@ -189,6 +192,8 @@ if __name__ == '__main__':
     print()
 
     stocks_close_values = get_last_day_price(stocks, stocks_tables)
+
+    #print(stocks_close_values)
 
     i = 0
     for index, stock in enumerate(stocks):

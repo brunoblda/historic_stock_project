@@ -7,13 +7,13 @@ import sys
 import numpy as np
 import rw_pickle as rw
 
-def data_periodo(inicio, final):
-    inicio = '{} 10:10:00'.format(inicio)
-    final = '{} 16:54:00'.format(final)
+def data_periodo(dia):
+    inicio = '{} 10:10:00'.format(dia)
+    final = '{} 16:54:00'.format(dia)
     periodo = (inicio,final)
     return periodo
 
-def stocks_tables_date_dataframe(stocks_names, stocks_tables, inicio, dias):
+def stocks_tables_date_dataframe(stocks_names, stocks_tables, dia_inicial, dias):
 
     stocks_tables_date = []
 
@@ -23,21 +23,21 @@ def stocks_tables_date_dataframe(stocks_names, stocks_tables, inicio, dias):
         dataframe = dataframe.set_index('date_time')
         dataframe.drop(['Datetime'], axis=1, inplace=True)
 
-        periodo = data_periodo(inicio, inicio)
+        horario_inicial, horario_final= data_periodo(dia_inicial)
 
-        result_table = dataframe.loc[periodo[0]:periodo[1]]
+        # resulta em um dataframe do primeiro dia escolhido do inicio do dia ao final do dia 
+        result_table = dataframe.loc[horario_final:horario_final]
 
         if dias > 1:
-            inicio_date_format = datetime.datetime.strptime(inicio, '%Y-%m-%d')
+            inicio_date_format = datetime.datetime.strptime(dia_inicial, '%Y-%m-%d')
             # inicio  formato = 'AAAA-MM-dd'
+
+            # resulta em um dataframe para cada dia após o primeiro  
             for counter_dias in range(1, dias):
 
                 inicio_for = inicio_date_format + datetime.timedelta(days=counter_dias)
-
-                periodo_for = data_periodo(inicio_for, inicio_for)
-
-                result_table_for = dataframe.sort_index().loc[periodo_for[0]:periodo_for[1]]
-
+                horario_for_inicial, horario_for_final = data_periodo(inicio_for)
+                result_table_for = dataframe.sort_index().loc[horario_for_inicial:horario_for_final]
                 result_table = result_table.append(result_table_for)
 
             stocks_tables_date.append(result_table)
@@ -110,29 +110,23 @@ def plot_visualization(table_diff, coluna):
     table_diff.plot(y=coluna, kind='hist')
     plt.show()
 
-def get_last_day_price(stocks_names, stocks_tables):
-
-
-    #def stocks_tables_date_dataframe(stocks_names, stocks_tables, inicio, dias):
+def get_last_day_price(stocks_tables):
 
     stocks_values = []
 
     dataframe_data = stocks_tables[0]
-    dataframe_data = dataframe_data.at[dataframe_data.index[-1], 'Datetime']
-    dataframeString = str(dataframe_data)
-    day_last_stock = dataframeString[0:10]
-    datetime_today = '{} 16:54:00'.format(day_last_stock)
+    dataframe_data = dataframe_data.at[dataframe_data.index[-1], 'Close']
 
+    print("value: ")
+    print(dataframe_data)
 
     for stock_table in stocks_tables:
         dataframe = stock_table
+
         dataframe['date_time'] = pd.to_datetime(dataframe['Datetime'])
         dataframe = dataframe.set_index('date_time')
         dataframe.drop(['Datetime'], axis=1, inplace=True)
-
-        dataframe = dataframe[datetime_today: datetime_today]
-
-        dataframe = dataframe[datetime_today:datetime_today]
+        dataframe = dataframe[-1:]
 
         result_value = dataframe['Close'].values
 
@@ -197,7 +191,9 @@ if __name__ == '__main__':
 
     print()
 
-    stocks_close_values = get_last_day_price(stocks, stocks_tables)
+    stocks_close_values = get_last_day_price(stocks_tables)
+
+    #print(stocks_close_values)
 
     i = 0
     for index, stock in enumerate(stocks):
