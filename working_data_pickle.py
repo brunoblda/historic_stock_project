@@ -117,9 +117,6 @@ def get_last_day_price(stocks_tables):
     dataframe_data = stocks_tables[0]
     dataframe_data = dataframe_data.at[dataframe_data.index[-1], 'Close']
 
-    print("value: ")
-    print(dataframe_data)
-
     for stock_table in stocks_tables:
         dataframe = stock_table
 
@@ -171,10 +168,21 @@ if __name__ == '__main__':
 
     elif lista_stock_escolha == 2:
 
-        stocks = ['ELET3', 'ELET6', 'PETR3', 'PETR4', 'BBDC3', 'BBDC4', 'ITSA3', 'ITSA4', 'ITUB3',
-                  'ITUB4', 'USIM3', 'USIM5', 'CMIG3', 'CMIG4', 'SANB11', 'BBAS3', 'BPAC11', 'BIDI3', 'BIDI4', 'BRSR6',
-                  'BPAN4', 'ABCB4', 'GGBR4', 'CSNA3', 'VALE3']
-
+        stocks = ["ABCB4", "ABEV3", "AESB3", "ALPA4", "ALSO3", "AMER3", "ARZZ3", "ASAI3", "AZUL4", "B3SA3",
+        "BBAS3", "BBDC3", "BBDC4", "BBSE3", "BEEF3", "BIDI11", "BIDI3", "BIDI4", "BPAN4", 
+        "BPAC11", "BRAP4", "BRFS3", "BRKM5", "BRML3", "BRSR6", "CCRO3", "CMIN3", "CMIG3", 
+        "CMIG4", "CESP6", "CIEL3", "CPFE3", "CPLE3", "CPLE6", "CRFB3", "CSAN3", "CSNA3", 
+        "CSMG3", "CXSE3", "CYRE3", "DXCO3", "EGIE3", "ELET3", "ELET6", "ECOR3", "EMBR3", 
+        "ENAT3", "ENBR3", "ENEV3", "ENGI11", "EQTL3", "GGBR4", "FLRY3", "GMAT3", "GOAU4", 
+        "HAPV3", "GRND3", "ITSA3", "ITSA4", "ITUB3", "ITUB4", "HYPE3", "INTB3", "JBSS3", 
+        "KLBN11", "KLBN4", "LCAM3", "LREN3", "LWSA3", "MGLU3", "MDIA3", "MOVI3", "MRFG3", 
+        "MRVE3", "MULT3", "NTCO3", "NEOE3", "ODPV3", "OIBR3", "OIBR4", "PCAR3", "PETR3", "PETR4","PETZ3", 
+        "PRIO3", "PSSA3", "RADL3", "RAIL3", "RDOR3", "RENT3", "RAIZ4", "SBSP3", "SANB11", 
+        "SANB4", "RRRP3", "SAPR11", "SAPR4", "SBFG3", "SLCE3", "SMFT3", "SMTO3", "SOMA3", 
+        "STBP3", "SUZB3", "SULA11", "TAEE11", "TASA4", "TIMS3", "TOTS3", "TRPL4", "UGPA3", 
+        "UNIP6", "VBBR3", "VIVT3", "VALE3", "WEGE3", "USIM3", "USIM5", "VAMO3", "VIIA3", "VIVA3", 
+        "YDUQ3"]
+        
         nome_arquivo = 'sqlite:///stocks_setores.db'
         data_minima = '2021-05-03'
 
