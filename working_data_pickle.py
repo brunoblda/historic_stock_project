@@ -26,7 +26,7 @@ def stocks_tables_date_dataframe(stocks_names, stocks_tables, dia_inicial, dias)
         horario_inicial, horario_final= data_periodo(dia_inicial)
 
         # resulta em um dataframe do primeiro dia escolhido do inicio do dia ao final do dia 
-        result_table = dataframe.loc[horario_final:horario_final]
+        result_table = dataframe.loc[horario_inicial:horario_final]
 
         if dias > 1:
             inicio_date_format = datetime.datetime.strptime(dia_inicial, '%Y-%m-%d')
@@ -222,6 +222,9 @@ if __name__ == '__main__':
     print('\nSe a diferença entre stock 1 e stock 2 for muito grande será também necessária uma análise por divisão')
     tem_divisao = input("Necessita de calculo pela divisão, digite 's' ou 'n': ")
 
+    """
+    Este codigo realizava a contagem de todas as ações presentes nos arquivos
+
     # formato stocks (nomes) , stocks_tables (tabela do banco de daddos), '2021-04-08' (dia de inicio), 1 (a se pegar)
     # data inicio '2021-04-08'
     stocks_dates = stocks_tables_date_dataframe(stocks, stocks_tables, data_entrada, n_dias_entrada)
@@ -231,6 +234,18 @@ if __name__ == '__main__':
 
     diferenca_de_acoes = diferenca_stocks(stocks_dates[index_primeiro_stock], stocks_dates[index_segundo_stock])
     divisao_de_acoes = divisao_stocks(stocks_dates[index_primeiro_stock], stocks_dates[index_segundo_stock])
+    """
+
+    #Este codigo realiza a mesma função que o codigo acima, o indice escolhido antes.
+    stock_date_1 = stocks_tables_date_dataframe([stocks[index_primeiro_stock],], [stocks_tables[index_primeiro_stock],], data_entrada, n_dias_entrada)
+    stock_date_2 = stocks_tables_date_dataframe([stocks[index_segundo_stock],], [stocks_tables[index_segundo_stock],], data_entrada, n_dias_entrada)
+
+    #for stock_date in stocks_dates:
+    #    print(stock_date)
+
+    diferenca_de_acoes = diferenca_stocks(stock_date_1[0], stock_date_2[0])
+    divisao_de_acoes = divisao_stocks(stock_date_1[0], stock_date_2[0])
+
 
     print('\t\t\tDiferença Stocks')
 
