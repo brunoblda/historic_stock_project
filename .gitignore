@@ -9,6 +9,9 @@ __pycache__/
 # Csv files
 *.csv
 
+# Analise de algumas ações
+good_dif.txt
+
 # Distribution / packaging
 .Python
 build/
