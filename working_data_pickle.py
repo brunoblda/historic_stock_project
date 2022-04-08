@@ -137,6 +137,25 @@ def get_last_day_price(stocks_tables):
 
     return stocks_values
 
+def data_distribution_percentil(data_analise):
+
+    data_15 = data_analise[4]
+    data_50 = data_analise[5]
+    data_75 = data_analise[6]
+
+    data_rel_1 = data_50 - data_15
+    data_rel_2 = data_75 - data_50
+
+    data_rel_R = 0.0
+
+    if data_rel_1 < data_rel_2:
+        data_rel_R = data_rel_1/data_rel_2
+    else:
+        data_rel_R = data_rel_2/data_rel_1
+
+    
+    return data_rel_R
+
 
 if __name__ == '__main__':
 
@@ -168,10 +187,10 @@ if __name__ == '__main__':
 
     elif lista_stock_escolha == 2:
 
-        stocks = ["ABCB4", "ABEV3", "AESB3", "ALPA4", "ALSO3", "AMER3", "ARZZ3", "ASAI3", "AZUL4", "B3SA3",
+        stocks = ["ABCB4", "ABEV3", "AESB3", "ALPA4", "ALSO3", "AMER3", "ARZZ3", "ASAI3", "AURE3", "AZUL4", "B3SA3",
         "BBAS3", "BBDC3", "BBDC4", "BBSE3", "BEEF3", "BIDI11", "BIDI3", "BIDI4", "BPAN4", 
         "BPAC11", "BRAP4", "BRFS3", "BRKM5", "BRML3", "BRSR6", "CCRO3", "CMIN3", "CMIG3", 
-        "CMIG4", "CESP6", "CIEL3", "CPFE3", "CPLE3", "CPLE6", "CRFB3", "CSAN3", "CSNA3", 
+        "CMIG4", "CIEL3", "CPFE3", "CPLE3", "CPLE6", "CRFB3", "CSAN3", "CSNA3", 
         "CSMG3", "CXSE3", "CYRE3", "DXCO3", "EGIE3", "ELET3", "ELET6", "ECOR3", "EMBR3", 
         "ENAT3", "ENBR3", "ENEV3", "ENGI11", "EQTL3", "GGBR4", "FLRY3", "GMAT3", "GOAU4", 
         "HAPV3", "GRND3", "ITSA3", "ITSA4", "ITUB3", "ITUB4", "HYPE3", "INTB3", "JBSS3", 
@@ -261,6 +280,49 @@ if __name__ == '__main__':
 
     #create_a_table_txt(diferenca_de_acoes,'diferenca_elet')
 
+    perc = [0.15, 0.50, 0.85]
+
+    print('\t\t\tDiferença Stocks')
+    dados_analise_diferenca = diferenca_de_acoes.loc[:, 'Diff'].describe(percentiles=perc) 
+    print(dados_analise_diferenca)
+    print()
+    data_rel_R = data_distribution_percentil(dados_analise_diferenca)
+    print("Relação da distribuição")
+    print(data_rel_R)
+    
+    if tem_divisao == 's':
+        print('\t\t\tDivisão Stocks')
+        dados_analise_divisao = divisao_de_acoes.loc[:, 'Div'].describe(percentiles=perc) 
+        print(dados_analise_divisao)
+        print()
+        data_rel_R = data_distribution_percentil(dados_analise_divisao)
+        print("Relação da distribuição")
+        print(data_rel_R)
+
+
+    
+
+
+    """
+    # Analise de dados por distribuição normal
+
+    numpy_serie_dif = diferenca_de_acoes.loc[:, 'Diff'].to_numpy()
+
+    def normal_dist(x , mean , sd):
+        prob_density = (np.pi*sd) * np.exp(-0.5*((x-mean)/sd)**2)
+        return prob_density
+
+    mean = np.mean(numpy_serie_dif)
+    sd = np.std(numpy_serie_dif)
+
+    pdf = normal_dist(numpy_serie_dif,mean, sd)
+
+    plt.plot(numpy_serie_dif,pdf , color = 'red')
+    plt.xlabel('Data points')
+    plt.ylabel('Probability Density')
+    """
+
+
     plot_visualization(diferenca_de_acoes, "Diff")
     if tem_divisao == 's':
         plot_visualization(divisao_de_acoes, "Div")
@@ -269,15 +331,6 @@ if __name__ == '__main__':
     #print(diferenca_de_acoes.loc[:, 'Diff'].min())
 
     #print(diferenca_de_acoes.loc[:, 'Diff'].max())
-
-    perc = [0.15, 0.50, 0.85]
-
-    print('\t\t\tDiferença Stocks')
-    print(diferenca_de_acoes.loc[:, 'Diff'].describe(percentiles=perc))
-    print()
-    if tem_divisao == 's':
-        print('\t\t\tDivisão Stocks')
-        print(divisao_de_acoes.loc[:, 'Div'].describe(percentiles=perc))
 
 
     #create_tables_stocks_txt(stocks_dates, stocks)

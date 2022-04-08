@@ -30,10 +30,10 @@ def database_settings(periodo):
                  'ITUB3', 'ITUB4', 'USIM3', 'USIM5', 'CMIG3', 'CMIG4']
     elif lista_stock_escolha == 2:
 
-        stocks = ["ABCB4", "ABEV3", "AESB3", "ALPA4", "ALSO3", "AMER3", "ARZZ3", "ASAI3", "AZUL4", "B3SA3",
+        stocks = ["ABCB4", "ABEV3", "AESB3", "ALPA4", "ALSO3", "AMER3", "ARZZ3", "ASAI3", "AURE3", "AZUL4", "B3SA3",
         "BBAS3", "BBDC3", "BBDC4", "BBSE3", "BEEF3", "BIDI11", "BIDI3", "BIDI4", "BPAN4", 
         "BPAC11", "BRAP4", "BRFS3", "BRKM5", "BRML3", "BRSR6", "CCRO3", "CMIN3", "CMIG3", 
-        "CMIG4", "CESP6", "CIEL3", "CPFE3", "CPLE3", "CPLE6", "CRFB3", "CSAN3", "CSNA3", 
+        "CMIG4", "CIEL3", "CPFE3", "CPLE3", "CPLE6", "CRFB3", "CSAN3", "CSNA3", 
         "CSMG3", "CXSE3", "CYRE3", "DXCO3", "EGIE3", "ELET3", "ELET6", "ECOR3", "EMBR3", 
         "ENAT3", "ENBR3", "ENEV3", "ENGI11", "EQTL3", "GGBR4", "FLRY3", "GMAT3", "GOAU4", 
         "HAPV3", "GRND3", "ITSA3", "ITSA4", "ITUB3", "ITUB4", "HYPE3", "INTB3", "JBSS3", 
