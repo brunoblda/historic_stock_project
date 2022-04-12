@@ -82,7 +82,6 @@ def divisao_stocks(dataframe1, dataframe2):
 
     return dataframe_result
 
-
 # criar tabelas txt da lista de stocks informada
 def create_tables_stocks_txt(lista, stocks_parametro):
     n = 0
@@ -98,16 +97,15 @@ def create_a_table_txt(dataframe, nome):
     with open(nome_arq, 'w') as file:
         dataframe.to_string(file)
 
-
 #df = pd.DataFrame(table1, columns=['Datetime', 'Close'])
 
 #df.plot(x='Datetime', y='Close', kind='line')
 #plt.show()
 
-def plot_visualization(table_diff, coluna):
-
-    table_diff.plot(y=coluna, kind='line')
-    table_diff.plot(y=coluna, kind='hist')
+def plot_visualization(list_table_diff_div, coluna):
+    for i in range(len(list_table_diff_div)):
+        list_table_diff_div[i].plot(y=coluna[i], kind='line')
+        list_table_diff_div[i].plot(y=coluna[i], kind='hist')
     plt.show()
 
 def get_last_day_price(stocks_tables):
@@ -153,9 +151,7 @@ def data_distribution_percentil(data_analise):
     else:
         data_rel_R = data_rel_2/data_rel_1
 
-    
     return data_rel_R
-
 
 if __name__ == '__main__':
 
@@ -299,10 +295,6 @@ if __name__ == '__main__':
         print("Relação da distribuição")
         print(data_rel_R)
 
-
-    
-
-
     """
     # Analise de dados por distribuição normal
 
@@ -321,16 +313,27 @@ if __name__ == '__main__':
     plt.xlabel('Data points')
     plt.ylabel('Probability Density')
     """
+    list_diff_and_div = []
+    string_diff_and_div = []
 
-
-    plot_visualization(diferenca_de_acoes, "Diff")
     if tem_divisao == 's':
-        plot_visualization(divisao_de_acoes, "Div")
+        
+        list_diff_and_div.append(diferenca_de_acoes)
+        list_diff_and_div.append(divisao_de_acoes)
+
+        string_diff_and_div.append("Diff")
+        string_diff_and_div.append("Div")
+
+        plot_visualization(list_diff_and_div, string_diff_and_div)
+
+    else:
+
+        list_diff_and_div.append(diferenca_de_acoes)
+        string_diff_and_div.append("Diff")
+
+        plot_visualization(list_diff_and_div, string_diff_and_div)
 
     #print(diferenca_de_acoes.loc[:, 'Diff'].mean())
     #print(diferenca_de_acoes.loc[:, 'Diff'].min())
-
     #print(diferenca_de_acoes.loc[:, 'Diff'].max())
-
-
     #create_tables_stocks_txt(stocks_dates, stocks)
