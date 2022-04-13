@@ -108,6 +108,11 @@ def plot_visualization(list_table_diff_div, coluna):
         list_table_diff_div[i].plot(y=coluna[i], kind='hist')
     plt.show()
 
+    # Realiza a comparação em grafico de linha do diff com o div (mas como são diferentes fica ruim de vizualizar (div sempre esta em torno de 1 e pouco))
+    """list_result = pd.concat([list_diff_and_div[0], list_diff_and_div[1]],join='inner', axis=1)
+    print(list_result) 
+    list_result.plot(y=[coluna[0],coluna[1]], kind='line')"""
+
 def get_last_day_price(stocks_tables):
 
     stocks_values = []
