@@ -47,8 +47,11 @@ class Rw_pickle:
                     # Traz a coluna datetimeindex como coluna normal
                     unpickle_stock_part_2.reset_index(inplace=True)
 
-                    # Apaga as linhas duplicadas
-                    unpickle_stock_part_2 = unpickle_stock_part_2.drop_duplicates()
+                    # Apaga as linhas duplicadas (deu um erro em 2022-04-14 bbdc4 - mesma data valores diferentes)
+                    # unpickle_stock_part_2 = unpickle_stock_part_2.drop_duplicates()
+
+                    # Apaga as linhas duplicadas (pela data)
+                    unpickle_stock_part_2 = unpickle_stock_part_2.drop_duplicates(subset=['Datetime'], keep='last')
 
                     # Defini a coluna datetime novamente como datetimeindex
                     unpickle_stock_part_2 = unpickle_stock_part_2.set_index(['Datetime'])
