@@ -5,7 +5,7 @@ def calcula_qual_comprar_e_qual_vender(maior,menor, resultado):
     if resultado == 0:
         return  'Comprar {} e vender {} !!!'.format(maior, menor)
     elif resultado == 1:
-        return 'Comprar{} e vender{} !!!'.format(menor, maior)
+        return 'Comprar {} e vender {} !!!'.format(menor, maior)
     else:
         return "Erro, entrada de dados inexistente"
 
